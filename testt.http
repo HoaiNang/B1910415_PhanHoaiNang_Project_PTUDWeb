@@ -1,0 +1,11 @@
+POST https://contact-book-5bc2b-default-rtdb.firebaseio.com/contacts.json/
+Content-Type: application/json
+
+{
+    "creatorId": "WgOch3h0WrfhgZL2S2Hf5umCFu42", 
+    "name": "Nguyen Van D",
+    "address": "Ninh Kieu, Can Tho", 
+    "avt": "https://cdn.pixabay.com/photo/2016/10/02/22/17/red-t-shirt-1710578_1280.jpg",
+    "phone": "0987678678", 
+    "email": "b123@gmail.com" 
+}
