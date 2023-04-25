@@ -39,6 +39,18 @@ class ContactManager with ChangeNotifier {
     }
   }
 
+  Future<void> searchContact(Contact contact, String names) async {
+    if (names == contact.name) {
+      final index = _items.indexWhere((item) => item.name == contact.name);
+      if (index >= 0) {
+        if (await _contactsService.searchContact(contact)) {
+          _items[index] = contact;
+          notifyListeners();
+        }
+      }
+    }
+  }
+
   Future<void> deleteContact(String id) async {
     final index = _items.indexWhere((item) => item.id == id);
     Contact? existingContact = _items[index];
@@ -71,6 +83,14 @@ class ContactManager with ChangeNotifier {
     }
   }
 
+  Contact? findByName(String name) {
+    try {
+      return _items.firstWhere((item) => item.name == name);
+    } catch (error) {
+      return null;
+    }
+  }
+
   Future<void> toggleFavoriteStatus(Contact contact) async {
     final savedStatus = contact.isFavorite;
     contact.isFavorite = !savedStatus;
@@ -79,5 +99,4 @@ class ContactManager with ChangeNotifier {
       contact.isFavorite = savedStatus;
     }
   }
-
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class CustomSearchDelegate extends SearchDelegate {
-  // Demo list to show querying
   List<String> searchTerms = [
     "Nguyễn Văn A",
     "Trần Thị B",
@@ -12,9 +11,6 @@ class CustomSearchDelegate extends SearchDelegate {
     "Võ Văn G",
     "Lương Thị H"
   ];
-
-  // first overwrite to
-  // clear the search text
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
@@ -42,9 +38,9 @@ class CustomSearchDelegate extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     List<String> matchQuery = [];
-    for (var fruit in searchTerms) {
-      if (fruit.toLowerCase().contains(query.toLowerCase())) {
-        matchQuery.add(fruit);
+    for (var names in searchTerms) {
+      if (names.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(names);
       }
     }
     return ListView.builder(
@@ -63,9 +59,9 @@ class CustomSearchDelegate extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
     List<String> matchQuery = [];
-    for (var fruit in searchTerms) {
-      if (fruit.toLowerCase().contains(query.toLowerCase())) {
-        matchQuery.add(fruit);
+    for (var names in searchTerms) {
+      if (names.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(names);
       }
     }
     return ListView.builder(

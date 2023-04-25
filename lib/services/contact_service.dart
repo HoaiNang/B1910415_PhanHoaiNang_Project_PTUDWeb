@@ -92,6 +92,25 @@ class ContactsService extends FirebaseService {
       return false;
     }
   }
+  Future<bool> searchContact(Contact contact) async {
+    try {
+      final url =
+          Uri.parse('$databaseUrl/contacts/${contact.name}.json?auth=$token');
+      final response = await http.patch(
+        url,
+        body: json.encode(contact.toJson()),
+      );
+
+      if (response.statusCode != 200) {
+        throw Exception(json.decode(response.body)['error']);
+      }
+
+      return true;
+    } catch (error) {
+      print(error);
+      return false;
+    }
+  }
 
   Future<bool> deleteContact(String id) async {
     try {
